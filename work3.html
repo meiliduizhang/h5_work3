@@ -90,7 +90,6 @@
     </fieldset>
     <script>
         var colorvalue = window.localStorage.getItem("localColor"); //获取本地的颜色值
-        console.log("初始颜色为：" + colorvalue);
         var div1 = document.getElementById("div1");
         var gray = document.getElementById("gray");
         var blueviolet = document.getElementById("blueviolet");
@@ -98,9 +97,14 @@
         var blue = document.getElementById("blue");
         var orange = document.getElementById("orange");
         var paleturquoise = document.getElementById("paleturquoise");
-        if (localStorage.pagecount == 1) {
-            colorvalue = gray;
+        if (localStorage.pagecount) {
+            localStorage.pagecount = Number(localStorage.pagecount) + 1;
+        } else {
+            localStorage.pagecount = 1;
+            div1.style.backgroundColor = "gray";
+            localStorage.setItem('localColor', 'gray')
         }
+        console.log("初始颜色为：" + colorvalue);
         if (colorvalue) {
             div1.style.backgroundColor = colorvalue; //把本地颜色赋值给盒子的背景颜色
         } else {
